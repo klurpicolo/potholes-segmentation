@@ -1,0 +1,6 @@
+/output
+/torch_vision_fine_tuning
+
+*.pt
+*.zip
+.idea
