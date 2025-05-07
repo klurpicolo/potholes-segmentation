@@ -1,3 +1,4 @@
+import streamlitpatch
 import streamlit as st
 import cv2
 import numpy as np
@@ -6,6 +7,7 @@ import os
 from ultralytics import YOLO
 import pandas as pd
 import time
+import torch
 
 # Cache the model to avoid reloading on every run
 @st.cache_resource
@@ -20,11 +22,11 @@ st.title("YOLOv8 Segmentation App")
 # Allow user to upload image or video
 uploaded_file = st.file_uploader("Upload an image or video", type=["jpg", "jpeg", "png", "mp4", "mov", "avi", "mkv"])
 
-confidence_threshold = st.sidebar.slider("Confidence Threshold", 0.0, 1.0, 0.5, 0.01)
+confidence_threshold = st.slider("Confidence Threshold", 0.0, 1.0, 0.5, 0.01)
 
 if uploaded_file is not None:
     filename = uploaded_file.name.lower()
-    
+
     # If the file is an image
     if filename.endswith(("jpg", "jpeg", "png")):
         # Convert uploaded file to a NumPy array for OpenCV
