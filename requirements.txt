@@ -5,4 +5,3 @@ opencv-python-headless>=4.7.0
 pandas>=2.2.3
 lap>=0.5.12
 bcrypt>=4.3.0
-opencv>=4.11.0.86
