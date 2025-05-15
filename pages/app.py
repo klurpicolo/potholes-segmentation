@@ -1,4 +1,3 @@
-import streamlitpatch
 import streamlit as st
 import cv2
 import numpy as np
@@ -7,7 +6,7 @@ import os
 from ultralytics import YOLO
 import pandas as pd
 import time
-import torch
+
 
 # Cache the model to avoid reloading on every run
 @st.cache_resource
@@ -15,9 +14,10 @@ def load_model():
     model_path = 'archive/run14/train14/weights/best.pt'
     return YOLO(model_path)
 
+
 model = load_model()
 
-st.title("YOLOv8 Segmentation App")
+st.title("Potholes and Cracks segmentation")
 
 # Allow user to upload image or video
 uploaded_file = st.file_uploader("Upload an image or video", type=["jpg", "jpeg", "png", "mp4", "mov", "avi", "mkv"])
@@ -50,7 +50,7 @@ if uploaded_file is not None:
             with col1:
                 st.image(original_rgb, caption="Original Image", use_container_width=True)
             with col2:
-                st.image(annotated_rgb, caption="YOLOv8 Segmentation", use_container_width=True)
+                st.image(annotated_rgb, caption="Segmented", use_container_width=True)
 
     elif filename.endswith(("mp4", "mov", "avi", "mkv")):
         with tempfile.NamedTemporaryFile(delete=False, suffix=os.path.splitext(filename)[1]) as tmp_file:

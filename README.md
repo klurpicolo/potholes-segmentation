@@ -17,4 +17,4 @@ https://universe.roboflow.com/search?q=model%253Ayolov11%2520potholes
 
 
 # How to run app
-streamlit run app.py 
+streamlit run pages/app.py 
